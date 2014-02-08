@@ -22,18 +22,21 @@ int main(int argc, const char * argv[]) {
         std::vector<std::string> firstLine{std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>{}};
         double start = std::stof(firstLine[0]);
     	double end = std::stof(firstLine[1]);
-        Intervall<double> mainIntervall(start, end);
+//        Intervall<double> mainIntervall(start, end);
+        Intervall<StringNumber> mainIntervall(firstLine[0], firstLine[1]);
         
         std::getline(std::cin, line);
         unsigned int n = std::stoi(line);
         
-        std::vector<Intervall<double>> intervalls;
+//        std::vector<Intervall<double>> intervalls;
+        std::vector<Intervall<StringNumber>> intervalls;
         
         for(int i = 0; i < n; i++) {
             std::getline(std::cin, line);
             std::istringstream iss(line);
             std::vector<std::string> inputIntervall{std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>{}};
-            intervalls.push_back(Intervall<double>(std::stod(inputIntervall[0]), std::stod(inputIntervall[1])));
+//            intervalls.push_back(Intervall<double>(std::stod(inputIntervall[0]), std::stod(inputIntervall[1])));
+            intervalls.push_back(Intervall<StringNumber>(inputIntervall[0], inputIntervall[1]));
         }
         
         std::vector<unsigned int> intervallIndexes;

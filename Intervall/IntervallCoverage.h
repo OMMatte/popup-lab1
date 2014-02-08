@@ -17,7 +17,16 @@ struct Intervall {
 class StringNumber {
     std::string number;
 public:
-    StringNumber(std::string number) : number(number) {}
+    StringNumber(std::string inputString) {
+        if(inputString.find('.') == std::string::npos) {
+            inputString.append(".0");
+        }
+        if(inputString == "-0.0"){
+            inputString = "0.0";
+        }
+        number = inputString;
+    }
+    
     bool operator<(const StringNumber & otherNumber) {
         bool otherIsNegative = otherNumber.number[0] == '-';
         bool thisIsNegative = number[0] == '-';
