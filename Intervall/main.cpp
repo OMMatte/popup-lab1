@@ -11,6 +11,7 @@
 #include <sstream>
 #include <iterator>
 #include <set>
+#include <stdexcept>
 
 #include "IntervallCoverage.h"
 
@@ -36,9 +37,9 @@ int main(int argc, const char * argv[]) {
         }
         
         std::vector<unsigned int> intervallIndexes;
-        
-        if(!minimalCoverage(mainIntervall, intervalls.begin(), intervalls.end(), back_inserter(intervallIndexes))) {
-            std::cout << "impossible" << std::endl;
+        minimalCoverage(mainIntervall, intervalls.begin(), intervalls.end(), back_inserter(intervallIndexes));
+        if(minimalCoverageResult == MIN_COV_FAILED) {
+                std::cout << "impossible" << std::endl;
         } else {
             std::cout << intervallIndexes.size() << std::endl;
             for(int i = 0; i < intervallIndexes.size(); i++) {
@@ -48,6 +49,9 @@ int main(int argc, const char * argv[]) {
                 } else {
                     std::cout << " " << index;
                 }
+            }
+            if(intervallIndexes.size() < 1) {
+                throw new std::invalid_argument("Strange");
             }
             std::cout << std::endl;
         }
